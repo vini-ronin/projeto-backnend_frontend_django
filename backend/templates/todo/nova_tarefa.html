@@ -1,0 +1,21 @@
+{% extends 'todo/base.html' %}
+{% block conteudo %}
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 shadow-sm border-0 bg-white">
+                <h3 class="fw-bold text-dark mb-3">Nova Tarefa</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% for field in form %}
+                    <div class="mb-3 text-dark">
+                        <!--<label class="form-label fw-bold small">{{ field.label }}</label>-->
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-success  px-2">Salvar Registro</button>
+                     <a class="btn btn-primary  btn-sm" href="{% url 'categoria' %}">+Adicionar Categoria</a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

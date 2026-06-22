@@ -1,0 +1,81 @@
+body {
+    background-color: #F5F3F0!important;
+}
+
+nav, .navbar, .navbar-nav, .navbar-expand-lg, .navbar-light, .navbar-dark {
+    background-color: #F5F3F0 !important;
+}
+
+nav a, .navbar-brand, .navbar-nav .nav-link {
+    color: #1A2845 !important;
+}
+
+nav a:hover, .navbar-brand:hover, .navbar-nav .nav-link:hover {
+    color: #1A2845 !important;
+}
+.btn{
+    background-color: #F5F3F0 !important;
+    color: #8B1538!important;
+    border: #1A2845 solid 1px !important;
+  
+}
+.cartao {
+      border: #8B1538 solid 1px !important;
+}
+
+/* Container de cada campo do formulário */
+.mb-3.text-dark {
+    display: flex;
+    flex-direction: row;       /* Força o alinhamento horizontal */
+    align-items: center;       /* Alinha verticalmente o label com o input */
+    margin-bottom: 1.25rem !important;
+    width: 100%;
+}
+
+/* Customização dos Labels (Rótulos) */
+.mb-3.text-dark .form-label {
+    flex: 0 0 25%;             /* O rótulo vai ocupar exatamente 25% da largura */
+    max-width: 25%;
+    margin-bottom: 0;          /* Remove a margem inferior padrão do Bootstrap */
+    padding-right: 15px;       /* Espaçamento entre o texto e o campo */
+    text-align: right;         /* Alinha o texto do label à direita para melhor leitura */
+}
+
+/* Customização dos Inputs, Selects e Textareas gerados pelo Django */
+.mb-3.text-dark input,
+.mb-3.text-dark select,
+.mb-3.text-dark textarea {
+    flex: 1;                   /* O campo ocupa o restante dos 75% da largura */
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;   /* Bordas arredondadas padrão do Bootstrap */
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Efeito de foco (Focus) clássico do Bootstrap nos campos */
+.mb-3.text-dark input:focus,
+.mb-3.text-dark select:focus,
+.mb-3.text-dark textarea:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Ajuste específico para as caixas de texto (Textarea) não quebrarem o alinhamento */
+.mb-3.text-dark textarea {
+    min-height: 80px;          /* Define uma altura inicial elegante */
+    resize: vertical;          /* Permite ao usuário esticar apenas para baixo */
+}
+
+/* Alinhamento dos botões na parte inferior */
+form .btn, form a.btn {
+    margin-top: 10px;
+}

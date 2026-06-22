@@ -1,0 +1,14 @@
+{% extends 'todo/base.html' %}
+{% block conteudo %}
+    <form method="POST">
+        {% csrf_token %}
+        <h6>Cadastro de Categoria</h6>
+        {% for field in form %}
+          {{field}}
+        {% endfor %}
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-success px-1">Salvar Categoria</button>
+            <a href="{% url 'listar_tarefas' %}" class="btn btn-secondary px-1">Cancelar</a>
+        </div>
+    </form>      
+{% endblock %}

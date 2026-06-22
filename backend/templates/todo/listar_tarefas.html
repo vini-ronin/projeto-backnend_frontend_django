@@ -1,0 +1,31 @@
+{% extends 'todo/base.html' %}
+{% block conteudo %}
+
+   <!-- Criar cards para mostrar os dados das tarefas-->
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+     {% for tarefa in tarefas %}
+          <div class="col">
+                <div class="card h-100 shadow-sm border-1">
+                    <div class="card-body">
+                      <h5 class="card-title fw-bold">{{ tarefa.titulo }}</h5>
+                      <p class="card-text">{{ tarefa.descricao }}</p>   
+                        <p class="card-text"><small class="text-muted">Categoria: {{ tarefa.categoria }}</small></p>    
+                    </div>  
+                    <!-- Mostar o campo analise_sentimento com cores que representam o sentimento -->
+                    <div class="card-footer bg-transparent border-0">
+                        <p class="card-text"><small class="text-muted">
+                            {% if tarefa.score_polaridade > 0 %}
+                                <span class="badge bg-success">{{ tarefa.analise_sentimento }}</span>
+                            {% elif tarefa.score_polaridade < 0 %}
+                                <span class="badge bg-danger">{{ tarefa.analise_sentimento }}</span>
+                            {% else %}
+                                <span class="badge bg-secondary">{{ tarefa.analise_sentimento }}</span>
+                            {% endif %}
+                        </small></p>
+                    </div>    
+                </div>
+            </div>
+     {% endfor %}
+
+
+{% endblock %}
