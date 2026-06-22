@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { API_BASE_URL, getEstudantes } from '../services/api';
 
 export default function Index() {
+  const [estudantes, setEstudantes] = useState([]);
   const [estudante, setEstudante] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,6 +15,7 @@ export default function Index() {
       try {
         const estudantes = await getEstudantes();
         if (mounted) {
+          setEstudantes(estudantes ?? []);
           setEstudante(estudantes?.[0] ?? null);
           setError(null);
         }
@@ -56,6 +58,26 @@ export default function Index() {
 
     return (
       <>
+        <View style={styles.selector}>
+          <Text style={styles.selectorTitle}>Escolha o estudante</Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.selectorList}>
+            {estudantes.map((item) => {
+              const selected = item.id === estudante.id;
+
+              return (
+                <Pressable
+                  key={item.id}
+                  onPress={() => setEstudante(item)}
+                  style={[styles.studentButton, selected && styles.studentButtonSelected]}
+                >
+                  <Text style={[styles.studentButtonText, selected && styles.studentButtonTextSelected]}>
+                    {item.nome}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </ScrollView>
+        </View>
         <Info label="Nome" value={estudante.nome} />
         <Info label="CPF" value={estudante.cpf} />
         <Info label="E-mail" value={estudante.email} />
@@ -119,6 +141,39 @@ const styles = StyleSheet.create({
     color: '#88a1c4',
     fontSize: 12,
     marginBottom: 4,
+  },
+  selector: {
+    gap: 8,
+  },
+  selectorTitle: {
+    color: '#ffffff',
+    fontSize: 14,
+    fontWeight: '700',
+  },
+  selectorList: {
+    gap: 8,
+    paddingRight: 4,
+  },
+  studentButton: {
+    minHeight: 40,
+    justifyContent: 'center',
+    paddingHorizontal: 14,
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#2b5f9c',
+    backgroundColor: '#0b2546',
+  },
+  studentButtonSelected: {
+    borderColor: '#ffffff',
+    backgroundColor: '#ffffff',
+  },
+  studentButtonText: {
+    color: '#ffffff',
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  studentButtonTextSelected: {
+    color: '#021123',
   },
   feedback: {
     flexDirection: 'row',
